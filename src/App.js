@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './components/Login';
 import React, {useState} from 'react';
+import AuthContext from './context/auth-context';
 
 function App() {
   const [isLoggedin, setIsLoggedin] = useState(false)
@@ -12,7 +13,12 @@ function App() {
   }
   return (
     <div className="App">
-      <Login isLoggedin={isLoggedin} onButtonClick={loginHandler}/>
+      <AuthContext.Provider value={{
+    isLoggedIn: isLoggedin,
+    onButtonClick:loginHandler
+}}>
+        <Login />
+      </AuthContext.Provider>
     </div>
   );
 }
